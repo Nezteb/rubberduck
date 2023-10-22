@@ -30,10 +30,10 @@ defmodule RubberduckWeb.GameChannel do
   def handle_in("action", %{"action" => action}, socket) do
     # Apply the action on the server
     GameState.apply_action(action)
-    
+
     # Broadcast the new state to all clients
     broadcast!(socket, "new_state", %{"state" => GameState.get_state()})
-    
+
     {:noreply, socket}
   end
 

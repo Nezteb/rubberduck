@@ -1,0 +1,46 @@
+<.header>
+  Listing Server states
+  <:actions>
+    <.link patch={~p"/server_states/new"}>
+      <.button>New Server state</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table
+  id="server_states"
+  rows={@streams.server_states}
+  row_click={fn {_id, server_state} -> JS.navigate(~p"/server_states/#{server_state}") end}
+>
+  <:col :let={{_id, server_state}} label="Value"><%= server_state.value %></:col>
+  <:action :let={{_id, server_state}}>
+    <div class="sr-only">
+      <.link navigate={~p"/server_states/#{server_state}"}>Show</.link>
+    </div>
+    <.link patch={~p"/server_states/#{server_state}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={{id, server_state}}>
+    <.link
+      phx-click={JS.push("delete", value: %{id: server_state.id}) |> hide("##{id}")}
+      data-confirm="Are you sure?"
+    >
+      Delete
+    </.link>
+  </:action>
+</.table>
+
+<.modal
+  :if={@live_action in [:new, :edit]}
+  id="server_state-modal"
+  show
+  on_cancel={JS.patch(~p"/server_states")}
+>
+  <.live_component
+    module={RubberduckWeb.ServerStateLive.FormComponent}
+    id={@server_state.id || :new}
+    title={@page_title}
+    action={@live_action}
+    server_state={@server_state}
+    patch={~p"/server_states"}
+  />
+</.modal>

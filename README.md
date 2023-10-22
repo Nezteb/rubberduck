@@ -4,10 +4,21 @@ TODO:
 
 - [ ] justfile + Dockerfile + docker-compose file
 - [ ] k8s/k3s yaml (use kind)
+  - [ ] https://github.com/massdriver-cloud/application-templates/tree/main/phoenix-kubernetes
 - [ ] Jaeger/Prometheus? (telemetry/tracing/metrics)
 - [ ] Read chatgpt conversation (and boltai)
 - [ ] devcontainer (from ice backend)
 - [ ] different container for MIX_ENV=dev, MIX_ENV=test, MIX_ENV=prod
+- [ ] horde/swarm/libcluster/pogo?
+
+Some commands for generating boilerplate initially:
+
+```sh
+# mix phx.gen.live Game GameState game_states value:integer
+mix phx.gen.live Game ServerState server_states value:integer
+mix phx.gen.live Game ClientState client_states value:integer # Manually tweak to add predicted state and action buffer
+mix phx.gen.channel Game
+```
 
 Old readme content below:
 

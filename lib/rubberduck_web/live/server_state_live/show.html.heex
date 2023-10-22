@@ -1,0 +1,31 @@
+<.header>
+  Server state <%= @server_state.id %>
+  <:subtitle>This is a server_state record from your database.</:subtitle>
+  <:actions>
+    <.link patch={~p"/server_states/#{@server_state}/show/edit"} phx-click={JS.push_focus()}>
+      <.button>Edit server_state</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.list>
+  <:item title="Value"><%= @server_state.value %></:item>
+</.list>
+
+<.back navigate={~p"/server_states"}>Back to server_states</.back>
+
+<.modal
+  :if={@live_action == :edit}
+  id="server_state-modal"
+  show
+  on_cancel={JS.patch(~p"/server_states/#{@server_state}")}
+>
+  <.live_component
+    module={RubberduckWeb.ServerStateLive.FormComponent}
+    id={@server_state.id}
+    title={@page_title}
+    action={@live_action}
+    server_state={@server_state}
+    patch={~p"/server_states/#{@server_state}"}
+  />
+</.modal>

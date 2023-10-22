@@ -22,6 +22,16 @@ config :rubberduck, RubberduckWeb.Endpoint,
   pubsub_server: Rubberduck.PubSub,
   live_view: [signing_salt: "Zktr14FB"]
 
+config :rubberduck, Rubberduck.CommandedApplication,
+  event_store: [
+    adapter: Commanded.EventStore.Adapters.EventStore,
+    event_store: Rubberduck.EventStore
+  ],
+  pubsub: :local,
+  registry: :local
+
+config :commanded_ecto_projections, repo: Rubberduck.Repo
+
 # Configures the mailer
 #
 # By default it uses the "Local" adapter which stores the emails

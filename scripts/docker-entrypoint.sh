@@ -9,7 +9,7 @@ done
 
 echo "PostgreSQL started"
 
-# Install dependencies
+# Install dependencies (should be cahced in Docker build)
 mix deps.get
 
 # Create and migrate database

@@ -18,6 +18,7 @@ defmodule Rubberduck.Application do
       # {Rubberduck.Worker, arg},
       # Start to serve requests, typically the last entry
       RubberduckWeb.Endpoint,
+      Rubberduck.CommandedApplication,
       {Rubberduck.GameState, 0}
     ]
 

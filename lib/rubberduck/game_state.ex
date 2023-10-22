@@ -1,13 +1,17 @@
 defmodule Rubberduck.GameState do
   use GenServer
 
+  # TODO: Get rid of game state, use Commanded aggregate for "state"
+
+  alias Rubberduck.Game.State
+
   # API
 
-  def start_link(initial_state) do
+  def start_link(%State{} = initial_state) do
     GenServer.start_link(__MODULE__, initial_state, name: __MODULE__)
   end
 
-  def get_state do
+  def get_state() do
     GenServer.call(__MODULE__, :get_state)
   end
 
@@ -17,7 +21,7 @@ defmodule Rubberduck.GameState do
 
   # Callbacks
 
-  def init(initial_state) do
+  def init(%State{} = initial_state) do
     {:ok, initial_state}
   end
 
