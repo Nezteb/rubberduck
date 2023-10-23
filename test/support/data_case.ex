@@ -24,7 +24,6 @@ defmodule Rubberduck.DataCase do
       import Ecto.Changeset
       import Ecto.Query
       import Rubberduck.DataCase
-      import Commanded.Assertions.EventAssertions
     end
   end
 
@@ -37,27 +36,10 @@ defmodule Rubberduck.DataCase do
   Sets up the sandbox based on the test tags.
   """
   def setup_sandbox(tags) do
-    # pid = Ecto.Adapters.SQL.Sandbox.start_owner!(Rubberduck.Repo, shared: not tags[:async])
-
-    {:ok, _} = Application.ensure_all_started(:rubberduck)
+    pid = Ecto.Adapters.SQL.Sandbox.start_owner!(Rubberduck.Repo, shared: not tags[:async])
 
     on_exit(fn ->
-      # Ecto.Adapters.SQL.Sandbox.stop_owner(pid)
-
-      # https://github.com/commanded/commanded/wiki/Testing-your-application
-      # TODO: Sometimes gives "** (MatchError) no match of right hand side value: {:error, {:not_started, :rubberduck}}"
-      # TODO: So for now we'll just not require :ok return
-      case Application.stop(:rubberduck) do
-        :ok ->
-          :ok
-
-        {:error, {:not_started, :rubberduck}} ->
-          IO.puts("Rubberduck not started, can't stop it")
-          :ok
-
-        other ->
-          IO.inspect(other, label: "UNKNOWN VALUE")
-      end
+      Ecto.Adapters.SQL.Sandbox.stop_owner(pid)
     end)
   end
 

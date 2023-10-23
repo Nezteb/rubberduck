@@ -1,5 +1,6 @@
 defmodule Rubberduck.Game.CommandedTest do
   use Rubberduck.DataCase
+  use Rubberduck.InMemoryEventStoreCase
 
   alias Rubberduck.CommandedApplication, as: App
   # alias Rubberduck.Game.Aggregates.State, as: Aggregate
@@ -14,22 +15,22 @@ defmodule Rubberduck.Game.CommandedTest do
     setup [:do_setup]
 
     test "ensure any event of this type is published" do
-      :ok = App.dispatch(%Command{amount: 4})
+      id = EventStore.UUID.uuid4()
+      :ok = App.dispatch(%Command{id: id, amount: 4})
 
       assert_receive_event(
         App,
         Event,
         # predicate_fn
         fn event ->
-          assert event.amount == 4
+          assert event.id === id
         end
       )
     end
 
     test "ensure an event is published matching the given predicate" do
-      Application.get_all_env(:rubberduck)
-
-      :ok = App.dispatch(%Command{amount: 4})
+      id = EventStore.UUID.uuid4()
+      :ok = App.dispatch(%Command{id: id, amount: 4})
 
       assert_receive_event(
         App,
@@ -38,7 +39,7 @@ defmodule Rubberduck.Game.CommandedTest do
         fn event -> event.amount == 4 end,
         # assertion_fn
         fn event ->
-          assert is_binary(event.correlation_id)
+          assert event.id === id
         end
       )
     end
@@ -64,12 +65,13 @@ defmodule Rubberduck.Game.CommandedTest do
     end
 
     test "make sure two events are correlated" do
-      :ok = App.dispatch(%Command{amount: 10})
+      id = EventStore.UUID.uuid4()
+      :ok = App.dispatch(%Command{id: id, amount: 10})
 
       assert_correlated(
         App,
         Event,
-        fn opened -> opened.account_number == "ACC123" end,
+        fn e -> e.id === id end,
         InitialAmountDeposited,
         fn deposited -> deposited.account_number == "ACC123" end
       )

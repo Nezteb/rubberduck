@@ -9,21 +9,20 @@ defmodule Rubberduck.Application do
   def start(_type, _args) do
     children =
       [
-        RubberduckWeb.Telemetry,
-        Rubberduck.Repo,
+        # Rubberduck.CommandedApplication includes Rubberduck.EventHandler
         Rubberduck.CommandedApplication,
         Rubberduck.EventHandler,
-        Rubberduck.EventStore,
+        Rubberduck.Repo,
         {DNSCluster, query: Application.get_env(:rubberduck, :dns_cluster_query) || :ignore},
         {Phoenix.PubSub, name: Rubberduck.PubSub},
         # Start the Finch HTTP client for sending emails
         {Finch, name: Rubberduck.Finch},
         # Start a worker by calling: Rubberduck.Worker.start_link(arg)
         # {Rubberduck.Worker, arg},
+        RubberduckWeb.Telemetry,
         # Start to serve requests, typically the last entry
-        RubberduckWeb.Endpoint
+        RubberduckWeb.Endpoint,
       ]
-      |> Enum.reject(fn x -> x === nil end)
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
