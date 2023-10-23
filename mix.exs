@@ -1,4 +1,4 @@
-defmodule Rubberduck.MixProject do
+defmodule RubberDuck.MixProject do
   use Mix.Project
 
   def project do
@@ -18,7 +18,7 @@ defmodule Rubberduck.MixProject do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {Rubberduck.Application, []},
+      mod: {RubberDuck.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
   end
@@ -64,6 +64,7 @@ defmodule Rubberduck.MixProject do
   #
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
+    # TODO: Add alias for "check" with credo and dialyzer and format and such
     [
       setup: ["deps.get", "ecto.setup", "assets.setup", "assets.build"],
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],

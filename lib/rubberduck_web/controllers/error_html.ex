@@ -1,5 +1,5 @@
-defmodule RubberduckWeb.ErrorHTML do
-  use RubberduckWeb, :html
+defmodule RubberDuckWeb.ErrorHTML do
+  use RubberDuckWeb, :html
 
   # If you want to customize your error pages,
   # uncomment the embed_templates/1 call below

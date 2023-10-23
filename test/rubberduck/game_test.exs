@@ -1,12 +1,12 @@
-defmodule Rubberduck.GameTest do
-  use Rubberduck.DataCase
+defmodule RubberDuck.GameTest do
+  use RubberDuck.DataCase
 
-  alias Rubberduck.Game
+  alias RubberDuck.Game
 
   describe "server_states" do
-    alias Rubberduck.Game.ServerState
+    alias RubberDuck.Game.ServerState
 
-    import Rubberduck.GameFixtures
+    import RubberDuck.GameFixtures
 
     @invalid_attrs %{value: nil}
 

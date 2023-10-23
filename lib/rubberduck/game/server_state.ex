@@ -1,6 +1,8 @@
-defmodule Rubberduck.Game.ServerState do
+defmodule RubberDuck.Game.ServerState do
   use Ecto.Schema
   import Ecto.Changeset
+
+  # TODO: Get rid of this in favor of state as a aggregates
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id

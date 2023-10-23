@@ -1,4 +1,4 @@
-defmodule Rubberduck.DataCase do
+defmodule RubberDuck.DataCase do
   @moduledoc """
   This module defines the setup for tests requiring
   access to the application's data layer.
@@ -10,7 +10,7 @@ defmodule Rubberduck.DataCase do
   we enable the SQL sandbox, so changes done to the database
   are reverted at the end of every test. If you are using
   PostgreSQL, you can even run database tests asynchronously
-  by setting `use Rubberduck.DataCase, async: true`, although
+  by setting `use RubberDuck.DataCase, async: true`, although
   this option is not recommended for other databases.
   """
 
@@ -18,17 +18,18 @@ defmodule Rubberduck.DataCase do
 
   using do
     quote do
-      alias Rubberduck.Repo
+      alias RubberDuck.Repo
 
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
-      import Rubberduck.DataCase
+      import RubberDuck.DataCase
+      import Commanded.Assertions.EventAssertions
     end
   end
 
   setup tags do
-    Rubberduck.DataCase.setup_sandbox(tags)
+    RubberDuck.DataCase.setup_sandbox(tags)
     :ok
   end
 
@@ -36,8 +37,16 @@ defmodule Rubberduck.DataCase do
   Sets up the sandbox based on the test tags.
   """
   def setup_sandbox(tags) do
-    pid = Ecto.Adapters.SQL.Sandbox.start_owner!(Rubberduck.Repo, shared: not tags[:async])
-    on_exit(fn -> Ecto.Adapters.SQL.Sandbox.stop_owner(pid) end)
+    pid = Ecto.Adapters.SQL.Sandbox.start_owner!(RubberDuck.Repo, shared: not tags[:async])
+
+    on_exit(fn ->
+      Ecto.Adapters.SQL.Sandbox.stop_owner(pid)
+
+      # https://github.com/commanded/commanded/wiki/Testing-your-application
+      :ok = Application.stop(:rubberduck)
+
+      RubberDuck.Storage.reset!()
+    end)
   end
 
   @doc """

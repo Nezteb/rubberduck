@@ -1,12 +1,12 @@
-defmodule Rubberduck.Game do
+defmodule RubberDuck.Game do
   @moduledoc """
   The Game context.
   """
 
   import Ecto.Query, warn: false
-  alias Rubberduck.Repo
+  alias RubberDuck.Repo
 
-  alias Rubberduck.Game.ServerState
+  alias RubberDuck.Game.ServerState
 
   @doc """
   Returns the list of server_states.

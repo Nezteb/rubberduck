@@ -1,4 +1,4 @@
-defmodule RubberduckWeb.CoreComponents do
+defmodule RubberDuckWeb.CoreComponents do
   @moduledoc """
   Provides core UI components.
 
@@ -17,7 +17,7 @@ defmodule RubberduckWeb.CoreComponents do
   use Phoenix.Component
 
   alias Phoenix.LiveView.JS
-  import RubberduckWeb.Gettext
+  import RubberDuckWeb.Gettext
 
   @doc """
   Renders a modal.
@@ -659,9 +659,9 @@ defmodule RubberduckWeb.CoreComponents do
     # with our gettext backend as first argument. Translations are
     # available in the errors.po file (as we use the "errors" domain).
     if count = opts[:count] do
-      Gettext.dngettext(RubberduckWeb.Gettext, "errors", msg, msg, count, opts)
+      Gettext.dngettext(RubberDuckWeb.Gettext, "errors", msg, msg, count, opts)
     else
-      Gettext.dgettext(RubberduckWeb.Gettext, "errors", msg, opts)
+      Gettext.dgettext(RubberDuckWeb.Gettext, "errors", msg, opts)
     end
   end
 

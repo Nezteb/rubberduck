@@ -1,7 +1,7 @@
-defmodule RubberduckWeb.ServerStateLive.Show do
-  use RubberduckWeb, :live_view
+defmodule RubberDuckWeb.ServerStateLive.Show do
+  use RubberDuckWeb, :live_view
 
-  alias Rubberduck.Game
+  alias RubberDuck.Game
 
   @impl true
   def mount(_params, _session, socket) do

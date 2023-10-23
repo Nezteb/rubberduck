@@ -1,6 +1,6 @@
-defmodule Rubberduck do
+defmodule RubberDuck do
   @moduledoc """
-  Rubberduck keeps the contexts that define your domain
+  RubberDuck keeps the contexts that define your domain
   and business logic.
 
   Contexts are also responsible for managing your data, regardless

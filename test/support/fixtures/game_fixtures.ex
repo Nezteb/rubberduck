@@ -1,7 +1,7 @@
-defmodule Rubberduck.GameFixtures do
+defmodule RubberDuck.GameFixtures do
   @moduledoc """
   This module defines test helpers for creating
-  entities via the `Rubberduck.Game` context.
+  entities via the `RubberDuck.Game` context.
   """
 
   @doc """
@@ -13,7 +13,7 @@ defmodule Rubberduck.GameFixtures do
       |> Enum.into(%{
         value: 42
       })
-      |> Rubberduck.Game.create_server_state()
+      |> RubberDuck.Game.create_server_state()
 
     server_state
   end

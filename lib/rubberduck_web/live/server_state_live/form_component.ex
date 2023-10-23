@@ -1,7 +1,7 @@
-defmodule RubberduckWeb.ServerStateLive.FormComponent do
-  use RubberduckWeb, :live_component
+defmodule RubberDuckWeb.ServerStateLive.FormComponent do
+  use RubberDuckWeb, :live_component
 
-  alias Rubberduck.Game
+  alias RubberDuck.Game
 
   @impl true
   def render(assigns) do

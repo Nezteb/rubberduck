@@ -1,12 +1,12 @@
-defmodule RubberduckWeb do
+defmodule RubberDuckWeb do
   @moduledoc """
   The entrypoint for defining your web interface, such
   as controllers, components, channels, and so on.
 
   This can be used in your application as:
 
-      use RubberduckWeb, :controller
-      use RubberduckWeb, :html
+      use RubberDuckWeb, :controller
+      use RubberDuckWeb, :html
 
   The definitions below will be executed for every controller,
   component, etc, so keep them short and clean, focused
@@ -40,10 +40,10 @@ defmodule RubberduckWeb do
     quote do
       use Phoenix.Controller,
         formats: [:html, :json],
-        layouts: [html: RubberduckWeb.Layouts]
+        layouts: [html: RubberDuckWeb.Layouts]
 
       import Plug.Conn
-      import RubberduckWeb.Gettext
+      import RubberDuckWeb.Gettext
 
       unquote(verified_routes())
     end
@@ -52,7 +52,7 @@ defmodule RubberduckWeb do
   def live_view do
     quote do
       use Phoenix.LiveView,
-        layout: {RubberduckWeb.Layouts, :app}
+        layout: {RubberDuckWeb.Layouts, :app}
 
       unquote(html_helpers())
     end
@@ -84,8 +84,8 @@ defmodule RubberduckWeb do
       # HTML escaping functionality
       import Phoenix.HTML
       # Core UI components and translation
-      import RubberduckWeb.CoreComponents
-      import RubberduckWeb.Gettext
+      import RubberDuckWeb.CoreComponents
+      import RubberDuckWeb.Gettext
 
       # Shortcut for generating JS commands
       alias Phoenix.LiveView.JS
@@ -98,9 +98,9 @@ defmodule RubberduckWeb do
   def verified_routes do
     quote do
       use Phoenix.VerifiedRoutes,
-        endpoint: RubberduckWeb.Endpoint,
-        router: RubberduckWeb.Router,
-        statics: RubberduckWeb.static_paths()
+        endpoint: RubberDuckWeb.Endpoint,
+        router: RubberDuckWeb.Router,
+        statics: RubberDuckWeb.static_paths()
     end
   end
 

@@ -1,7 +1,7 @@
 import Config
 
 # Configure your database
-config :rubberduck, Rubberduck.Repo,
+config :rubberduck, RubberDuck.Repo,
   username: "postgres",
   password: "postgres",
   hostname: "db",
@@ -16,7 +16,7 @@ config :rubberduck, Rubberduck.Repo,
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we can use it
 # to bundle .js and .css sources.
-config :rubberduck, RubberduckWeb.Endpoint,
+config :rubberduck, RubberDuckWeb.Endpoint,
   # Binding to loopback ipv4 address prevents access from other machines.
   # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
   http: [ip: {0, 0, 0, 0}, port: 4000],
@@ -53,7 +53,7 @@ config :rubberduck, RubberduckWeb.Endpoint,
 # different ports.
 
 # Watch static and templates for browser reloading.
-config :rubberduck, RubberduckWeb.Endpoint,
+config :rubberduck, RubberDuckWeb.Endpoint,
   live_reload: [
     patterns: [
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",

@@ -1,4 +1,4 @@
-# Rubberduck
+# RubberDuck
 
 TODO:
 
@@ -10,6 +10,7 @@ TODO:
 - [ ] devcontainer (from ice backend)
 - [ ] different container for MIX_ENV=dev, MIX_ENV=test, MIX_ENV=prod
 - [ ] horde/swarm/libcluster/pogo?
+- [ ] MQTT / NATS ? (prob not, need to support web clients)
 
 Some commands for generating boilerplate initially:
 
@@ -24,7 +25,7 @@ Old readme content below:
 
 ---
 
-# Rubberduck
+# RubberDuck
 
 To start your Phoenix server:
 

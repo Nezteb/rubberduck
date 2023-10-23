@@ -1,12 +1,12 @@
-defmodule RubberduckWeb.ErrorJSONTest do
-  use RubberduckWeb.ConnCase, async: true
+defmodule RubberDuckWeb.ErrorJSONTest do
+  use RubberDuckWeb.ConnCase, async: true
 
   test "renders 404" do
-    assert RubberduckWeb.ErrorJSON.render("404.json", %{}) == %{errors: %{detail: "Not Found"}}
+    assert RubberDuckWeb.ErrorJSON.render("404.json", %{}) == %{errors: %{detail: "Not Found"}}
   end
 
   test "renders 500" do
-    assert RubberduckWeb.ErrorJSON.render("500.json", %{}) ==
+    assert RubberDuckWeb.ErrorJSON.render("500.json", %{}) ==
              %{errors: %{detail: "Internal Server Error"}}
   end
 end

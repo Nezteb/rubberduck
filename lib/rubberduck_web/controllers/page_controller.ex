@@ -1,5 +1,5 @@
-defmodule RubberduckWeb.PageController do
-  use RubberduckWeb, :controller
+defmodule RubberDuckWeb.PageController do
+  use RubberDuckWeb, :controller
 
   def home(conn, _params) do
     # The home page is often custom made,

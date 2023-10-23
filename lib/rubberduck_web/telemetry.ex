@@ -1,4 +1,4 @@
-defmodule RubberduckWeb.Telemetry do
+defmodule RubberDuckWeb.Telemetry do
   use Supervisor
   import Telemetry.Metrics
 
@@ -86,7 +86,7 @@ defmodule RubberduckWeb.Telemetry do
     [
       # A module, function and arguments to be invoked periodically.
       # This function must call :telemetry.execute/3 and a metric must be added above.
-      # {RubberduckWeb, :count_users, []}
+      # {RubberDuckWeb, :count_users, []}
     ]
   end
 end

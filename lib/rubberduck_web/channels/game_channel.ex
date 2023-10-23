@@ -1,5 +1,5 @@
-defmodule RubberduckWeb.GameChannel do
-  use RubberduckWeb, :channel
+defmodule RubberDuckWeb.GameChannel do
+  use RubberDuckWeb, :channel
 
   alias RubberDuck.GameState
 

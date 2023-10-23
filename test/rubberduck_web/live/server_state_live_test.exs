@@ -1,8 +1,8 @@
-defmodule RubberduckWeb.ServerStateLiveTest do
-  use RubberduckWeb.ConnCase
+defmodule RubberDuckWeb.ServerStateLiveTest do
+  use RubberDuckWeb.ConnCase
 
   import Phoenix.LiveViewTest
-  import Rubberduck.GameFixtures
+  import RubberDuck.GameFixtures
 
   @create_attrs %{value: 42}
   @update_attrs %{value: 43}
