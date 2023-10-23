@@ -2,7 +2,8 @@
 
 TODO:
 
-- [ ] justfile + Dockerfile + docker-compose file
+- [X] Dockerfile + docker-compose file
+- [ ] justfile?
 - [ ] earthly for ci?
 - [ ] k8s/k3s yaml (use kind for ci?)
   - [ ] https://github.com/massdriver-cloud/application-templates/tree/main/phoenix-kubernetes
@@ -13,6 +14,7 @@ TODO:
 - [ ] have `mix test` automatically start docker compose stack?
 - [ ] horde/swarm/libcluster/pogo?
 - [ ] MQTT / NATS ? (prob not, need to support web clients)
+- [X] credo/dialyzer/sobelow
 
 Some commands for generating boilerplate initially:
 

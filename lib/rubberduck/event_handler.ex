@@ -17,8 +17,12 @@ defmodule Rubberduck.EventHandler do
     end
   end
 
-  def handle(%StateIncremented{amount: amount}, _metadata) do
-    Agent.update(__MODULE__, fn _ -> current_balance() + amount end)
+  def handle(%StateIncremented{amount: n}, _metadata) when n in [nil, 0] do
+    :ok
+  end
+
+  def handle(%StateIncremented{amount: increment_amount}, _metadata) do
+    Agent.update(__MODULE__, fn current_balance -> current_balance + increment_amount end)
   end
 
   def handle(%StateIncremented{}, _metadata) do
@@ -28,5 +32,10 @@ defmodule Rubberduck.EventHandler do
 
   def current_balance do
     Agent.get(__MODULE__, fn balance -> balance end)
+  end
+
+  def before_reset do
+    IO.puts("Resetting #{__MODULE__}")
+    :ok
   end
 end

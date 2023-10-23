@@ -67,13 +67,13 @@ defmodule Rubberduck.MixProject do
   #
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
-    # TODO: Add alias for "check" with credo and dialyzer and format and such
     [
-      setup: ["deps.get", "ecto.setup", "assets.setup", "assets.build"],
+      setup: ["deps.get", "ecto.setup", "event.setup", "assets.setup", "assets.build"],
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
-      "event.store": ["event_store.create", "event_store.init"],
-      "reset.dbs": ["event_store.reset", "ecto.reset"],
+      "event.setup": ["event_store.create", "event_store.init"],
+      "event.reset": ["event_store.drop", "event.setup"],
+      reset: ["ecto.reset", "event.reset"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
       "assets.setup": ["tailwind.install --if-missing", "esbuild.install --if-missing"],
       "assets.build": ["tailwind default", "esbuild default"],

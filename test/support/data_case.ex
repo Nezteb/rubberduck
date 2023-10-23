@@ -38,6 +38,7 @@ defmodule Rubberduck.DataCase do
   """
   def setup_sandbox(tags) do
     # pid = Ecto.Adapters.SQL.Sandbox.start_owner!(Rubberduck.Repo, shared: not tags[:async])
+
     {:ok, _} = Application.ensure_all_started(:rubberduck)
 
     on_exit(fn ->
@@ -47,15 +48,15 @@ defmodule Rubberduck.DataCase do
       # TODO: Sometimes gives "** (MatchError) no match of right hand side value: {:error, {:not_started, :rubberduck}}"
       # TODO: So for now we'll just not require :ok return
       case Application.stop(:rubberduck) do
-        :ok -> :ok
-        {:error, {:not_started, :rubberduck}} -> :ok
-        other -> IO.inspect(other, label: "ERROR")
-      end
+        :ok ->
+          :ok
 
-      if Map.get(tags, :no_storage_reset, false) do
-        IO.inspect(tags, label: "Skipping storage reset for test")
-      else
-        # Rubberduck.Storage.reset!()
+        {:error, {:not_started, :rubberduck}} ->
+          IO.puts("Rubberduck not started, can't stop it")
+          :ok
+
+        other ->
+          IO.inspect(other, label: "UNKNOWN VALUE")
       end
     end)
   end

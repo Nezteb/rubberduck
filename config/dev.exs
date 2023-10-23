@@ -12,12 +12,12 @@ config :rubberduck, Rubberduck.Repo,
 
 config :rubberduck, Rubberduck.EventStore,
   serializer: Commanded.Serialization.JsonSerializer,
+  column_data_type: "jsonb",
+  types: EventStore.PostgresTypes,
   hostname: "localhost",
   username: "postgres",
   password: "postgres",
   database: "eventstore_dev",
-  stacktrace: true,
-  show_sensitive_data_on_connection_error: true,
   pool_size: 10
 
 # For development, we disable any cache and enable

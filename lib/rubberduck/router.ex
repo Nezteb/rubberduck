@@ -9,5 +9,5 @@ defmodule Rubberduck.Router do
   alias Rubberduck.Game.Aggregates.State
   alias Rubberduck.Game.Commands.IncrementState
 
-  dispatch([IncrementState], to: State, identity: :correlation_id)
+  dispatch([IncrementState], to: State, identity: :id)
 end

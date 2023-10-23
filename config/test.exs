@@ -13,20 +13,18 @@ config :rubberduck, Rubberduck.Repo,
   pool: Ecto.Adapters.SQL.Sandbox,
   pool_size: 10
 
+config :rubberduck, Rubberduck.CommandedApplication,
+  event_store: [
+    adapter: Commanded.EventStore.Adapters.InMemory
+  ],
+  consistency: :strong
+
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
 config :rubberduck, RubberduckWeb.Endpoint,
   http: [ip: {127, 0, 0, 1}, port: 4002],
   secret_key_base: "bsoa9u6sxfR6zo5UYMi6t5nUjV9UxuQEc11LdVUyk9hzAu9a5zVlQS6ZFW3W7Nts",
   server: false
-
-config :rubberduck, Rubberduck.CommandedApplication,
-  event_store: [
-    adapter: Commanded.EventStore.Adapters.InMemory,
-    serializer: Commanded.Serialization.JsonSerializer
-  ],
-  # TODO: Why strong?
-  consistency: :strong
 
 # In test we don't send emails.
 config :rubberduck, Rubberduck.Mailer, adapter: Swoosh.Adapters.Test
