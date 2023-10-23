@@ -1,12 +1,12 @@
-defmodule RubberDuck.EventHandler do
+defmodule Rubberduck.EventHandler do
   # TODO: Eventual or strong consistency? https://hexdocs.pm/commanded/Commanded.Event.Handler.html#module-consistency
   # TODO: Concurrency? https://hexdocs.pm/commanded/Commanded.Event.Handler.html#module-concurrency
   use Commanded.Event.Handler,
-    application: RubberDuck.CommandedApplication,
+    application: Rubberduck.CommandedApplication,
     name: __MODULE__,
-    consistency: Application.get_env(:rubberduck, RubberDuck.CommandedApplication)[:consistency] || :eventual
+    consistency: Application.get_env(:rubberduck, Rubberduck.CommandedApplication)[:consistency] || :eventual
 
-  alias RubberDuck.Game.Events.StateIncremented
+  alias Rubberduck.Game.Events.StateIncremented
 
   # Event handlers modify non-Commanded app state (like Ecto) after events are dispatched
 

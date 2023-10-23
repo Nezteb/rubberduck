@@ -1,7 +1,7 @@
-defmodule RubberDuckWeb.GameChannel do
-  use RubberDuckWeb, :channel
+defmodule RubberduckWeb.GameChannel do
+  use RubberduckWeb, :channel
 
-  alias RubberDuck.GameState
+  alias Rubberduck.GameState
 
   @impl true
   def join("game:lobby", payload, socket) do

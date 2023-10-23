@@ -1,4 +1,4 @@
-defmodule RubberDuckWeb.Endpoint do
+defmodule RubberduckWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :rubberduck
 
   # The session will be stored in the cookie and signed,
@@ -21,7 +21,7 @@ defmodule RubberDuckWeb.Endpoint do
     at: "/",
     from: :rubberduck,
     gzip: false,
-    only: RubberDuckWeb.static_paths()
+    only: RubberduckWeb.static_paths()
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
@@ -47,5 +47,5 @@ defmodule RubberDuckWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
-  plug RubberDuckWeb.Router
+  plug RubberduckWeb.Router
 end

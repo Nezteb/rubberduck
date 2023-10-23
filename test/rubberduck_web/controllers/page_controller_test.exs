@@ -1,5 +1,5 @@
-defmodule RubberDuckWeb.PageControllerTest do
-  use RubberDuckWeb.ConnCase
+defmodule RubberduckWeb.PageControllerTest do
+  use RubberduckWeb.ConnCase
 
   test "GET /", %{conn: conn} do
     conn = get(conn, ~p"/")

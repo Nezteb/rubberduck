@@ -1,8 +1,8 @@
-defmodule RubberDuckWeb.ServerStateLive.Index do
-  use RubberDuckWeb, :live_view
+defmodule RubberduckWeb.ServerStateLive.Index do
+  use RubberduckWeb, :live_view
 
-  alias RubberDuck.Game
-  alias RubberDuck.Game.ServerState
+  alias Rubberduck.Game
+  alias Rubberduck.Game.ServerState
 
   @impl true
   def mount(_params, _session, socket) do
@@ -33,7 +33,7 @@ defmodule RubberDuckWeb.ServerStateLive.Index do
   end
 
   @impl true
-  def handle_info({RubberDuckWeb.ServerStateLive.FormComponent, {:saved, server_state}}, socket) do
+  def handle_info({RubberduckWeb.ServerStateLive.FormComponent, {:saved, server_state}}, socket) do
     {:noreply, stream_insert(socket, :server_states, server_state)}
   end
 

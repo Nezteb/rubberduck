@@ -1,11 +1,13 @@
-defmodule RubberDuckWeb.Router do
-  use RubberDuckWeb, :router
+defmodule RubberduckWeb.Router do
+  use RubberduckWeb, :router
+
+  alias RubberduckWeb.ServerStateLive.Index, as: ServerStateLive
 
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_live_flash
-    plug :put_root_layout, html: {RubberDuckWeb.Layouts, :root}
+    plug :put_root_layout, html: {RubberduckWeb.Layouts, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
   end
@@ -14,14 +16,21 @@ defmodule RubberDuckWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", RubberDuckWeb do
+  scope "/", RubberduckWeb do
     pipe_through :browser
 
     get "/", PageController, :home
+
+    live "/server_states", ServerStateLive, :index
+    live "/server_states/new", ServerStateLive, :new
+    live "/server_states/:id/edit", ServerStateLive, :edit
+
+    live "/server_states/:id", ServerStateLive, :show
+    live "/server_states/:id/show/edit", ServerStateLive, :edit
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", RubberDuckWeb do
+  # scope "/api", RubberduckWeb do
   #   pipe_through :api
   # end
 
@@ -37,7 +46,7 @@ defmodule RubberDuckWeb.Router do
     scope "/dev" do
       pipe_through :browser
 
-      live_dashboard "/dashboard", metrics: RubberDuckWeb.Telemetry
+      live_dashboard "/dashboard", metrics: RubberduckWeb.Telemetry
       forward "/mailbox", Plug.Swoosh.MailboxPreview
     end
   end

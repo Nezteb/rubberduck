@@ -1,4 +1,4 @@
-defmodule RubberDuck.Game.Commands.IncrementState do
+defmodule Rubberduck.Game.Commands.IncrementState do
   use Ecto.Schema
   import Ecto.Changeset
 

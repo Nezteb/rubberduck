@@ -1,5 +1,5 @@
-defmodule RubberDuckWeb.PageHTML do
-  use RubberDuckWeb, :html
+defmodule RubberduckWeb.PageHTML do
+  use RubberduckWeb, :html
 
   embed_templates "page_html/*"
 end

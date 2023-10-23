@@ -1,4 +1,4 @@
-defmodule RubberDuck.Storage do
+defmodule Rubberduck.Storage do
   @doc """
   Clear the event store and read store databases
   """
@@ -8,7 +8,7 @@ defmodule RubberDuck.Storage do
   end
 
   defp reset_eventstore do
-    config = RubberDuck.EventStore.config()
+    config = Rubberduck.EventStore.config()
 
     {:ok, conn} = Postgrex.start_link(config)
 

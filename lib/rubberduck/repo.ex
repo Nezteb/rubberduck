@@ -1,4 +1,4 @@
-defmodule RubberDuck.Repo do
+defmodule Rubberduck.Repo do
   use Ecto.Repo,
     otp_app: :rubberduck,
     adapter: Ecto.Adapters.Postgres

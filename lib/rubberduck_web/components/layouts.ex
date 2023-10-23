@@ -1,5 +1,5 @@
-defmodule RubberDuckWeb.Layouts do
-  use RubberDuckWeb, :html
+defmodule RubberduckWeb.Layouts do
+  use RubberduckWeb, :html
 
   embed_templates "layouts/*"
 end

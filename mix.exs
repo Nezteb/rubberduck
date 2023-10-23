@@ -1,4 +1,4 @@
-defmodule RubberDuck.MixProject do
+defmodule Rubberduck.MixProject do
   use Mix.Project
 
   def project do
@@ -18,7 +18,7 @@ defmodule RubberDuck.MixProject do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {RubberDuck.Application, []},
+      mod: {Rubberduck.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
   end

@@ -1,9 +1,10 @@
-# RubberDuck
+# Rubberduck
 
 TODO:
 
 - [ ] justfile + Dockerfile + docker-compose file
-- [ ] k8s/k3s yaml (use kind)
+- [ ] earthly for ci?
+- [ ] k8s/k3s yaml (use kind for ci?)
   - [ ] https://github.com/massdriver-cloud/application-templates/tree/main/phoenix-kubernetes
 - [ ] Jaeger/Prometheus? (telemetry/tracing/metrics)
 - [ ] Read chatgpt conversation (and boltai)
@@ -25,7 +26,7 @@ Old readme content below:
 
 ---
 
-# RubberDuck
+# Rubberduck
 
 To start your Phoenix server:
 

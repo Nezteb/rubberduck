@@ -1,4 +1,4 @@
-defmodule RubberDuck.Game.Events.StateIncremented do
+defmodule Rubberduck.Game.Events.StateIncremented do
   @derive Jason.Encoder
   defstruct [
     :amount,
@@ -7,7 +7,7 @@ defmodule RubberDuck.Game.Events.StateIncremented do
   ]
 end
 
-defimpl Commanded.Serialization.JsonDecoder, for: RubberDuck.Game.Events.StateIncremented do
+defimpl Commanded.Serialization.JsonDecoder, for: Rubberduck.Game.Events.StateIncremented do
   @doc """
   Logic to convert string-based `sent_at` JSON value into
   an Elixir DateTime value when not nil.

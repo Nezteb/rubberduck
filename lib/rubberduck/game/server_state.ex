@@ -1,4 +1,4 @@
-defmodule RubberDuck.Game.ServerState do
+defmodule Rubberduck.Game.ServerState do
   use Ecto.Schema
   import Ecto.Changeset
 

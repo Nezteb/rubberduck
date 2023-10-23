@@ -1,4 +1,4 @@
-defmodule RubberDuck.Router do
+defmodule Rubberduck.Router do
   @moduledoc """
   Router that defines which commands get sent to which aggregate.
   """
@@ -6,8 +6,8 @@ defmodule RubberDuck.Router do
   use Commanded.Commands.Router
 
   # TODO: Instead of dirs for aggregates/commands/events, use actual "domain" folders?
-  alias RubberDuck.Game.Aggregates.State
-  alias RubberDuck.Game.Commands.IncrementState
+  alias Rubberduck.Game.Aggregates.State
+  alias Rubberduck.Game.Commands.IncrementState
 
   dispatch([IncrementState], to: State, identity: :correlation_id)
 end

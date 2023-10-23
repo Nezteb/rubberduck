@@ -1,4 +1,4 @@
-defmodule RubberDuck.Repo.Migrations.CreateServerStates do
+defmodule Rubberduck.Repo.Migrations.CreateServerStates do
   use Ecto.Migration
 
   def change do

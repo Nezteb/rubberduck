@@ -1,11 +1,11 @@
-defmodule RubberDuckWeb.GameChannelTest do
-  use RubberDuckWeb.ChannelCase
+defmodule RubberduckWeb.GameChannelTest do
+  use RubberduckWeb.ChannelCase
 
   setup do
     {:ok, _, socket} =
-      RubberDuckWeb.UserSocket
+      RubberduckWeb.UserSocket
       |> socket("user_id", %{some: :assign})
-      |> subscribe_and_join(RubberDuckWeb.GameChannel, "game:lobby")
+      |> subscribe_and_join(RubberduckWeb.GameChannel, "game:lobby")
 
     %{socket: socket}
   end

@@ -1,12 +1,12 @@
-defmodule RubberDuck.Game.Aggregates.State do
+defmodule Rubberduck.Game.Aggregates.State do
   defstruct [
     :amount,
     :correlation_id,
     :sent_at
   ]
 
-  alias RubberDuck.Game.Commands.IncrementState
-  alias RubberDuck.Game.Events.StateIncremented
+  alias Rubberduck.Game.Commands.IncrementState
+  alias Rubberduck.Game.Events.StateIncremented
 
   # "handle the command, protect its business invariants, and return a domain event when successfully handled"
 

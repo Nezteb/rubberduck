@@ -1,4 +1,4 @@
-defmodule RubberDuck.Application do
+defmodule Rubberduck.Application do
   # See https://hexdocs.pm/elixir/Application.html
   # for more information on OTP Applications
   @moduledoc false
@@ -8,24 +8,24 @@ defmodule RubberDuck.Application do
   @impl true
   def start(_type, _args) do
     children = [
-      RubberDuckWeb.Telemetry,
-      RubberDuck.Repo,
+      RubberduckWeb.Telemetry,
+      Rubberduck.Repo,
       {DNSCluster, query: Application.get_env(:rubberduck, :dns_cluster_query) || :ignore},
-      {Phoenix.PubSub, name: RubberDuck.PubSub},
+      {Phoenix.PubSub, name: Rubberduck.PubSub},
       # Start the Finch HTTP client for sending emails
-      {Finch, name: RubberDuck.Finch},
-      # Start a worker by calling: RubberDuck.Worker.start_link(arg)
-      # {RubberDuck.Worker, arg},
+      {Finch, name: Rubberduck.Finch},
+      # Start a worker by calling: Rubberduck.Worker.start_link(arg)
+      # {Rubberduck.Worker, arg},
       # Start to serve requests, typically the last entry
-      RubberDuckWeb.Endpoint,
-      RubberDuck.CommandedApplication,
-      RubberDuck.EventHandler,
-      {RubberDuck.GameState, 0}
+      RubberduckWeb.Endpoint,
+      Rubberduck.CommandedApplication,
+      Rubberduck.EventHandler,
+      {Rubberduck.GameState, 0}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
-    opts = [strategy: :one_for_one, name: RubberDuck.Supervisor]
+    opts = [strategy: :one_for_one, name: Rubberduck.Supervisor]
     Supervisor.start_link(children, opts)
   end
 
@@ -33,7 +33,7 @@ defmodule RubberDuck.Application do
   # whenever the application is updated.
   @impl true
   def config_change(changed, _new, removed) do
-    RubberDuckWeb.Endpoint.config_change(changed, removed)
+    RubberduckWeb.Endpoint.config_change(changed, removed)
     :ok
   end
 end

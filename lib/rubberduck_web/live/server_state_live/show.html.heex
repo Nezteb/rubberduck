@@ -21,7 +21,7 @@
   on_cancel={JS.patch(~p"/server_states/#{@server_state}")}
 >
   <.live_component
-    module={RubberDuckWeb.ServerStateLive.FormComponent}
+    module={RubberduckWeb.ServerStateLive.FormComponent}
     id={@server_state.id}
     title={@page_title}
     action={@live_action}

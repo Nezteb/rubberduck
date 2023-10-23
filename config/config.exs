@@ -8,30 +8,30 @@
 import Config
 
 config :rubberduck,
-  ecto_repos: [RubberDuck.Repo],
+  ecto_repos: [Rubberduck.Repo],
   generators: [timestamp_type: :utc_datetime, binary_id: true]
 
 # Configures the endpoint
-config :rubberduck, RubberDuckWeb.Endpoint,
+config :rubberduck, RubberduckWeb.Endpoint,
   url: [host: "localhost"],
   adapter: Bandit.PhoenixAdapter,
   render_errors: [
-    formats: [html: RubberDuckWeb.ErrorHTML, json: RubberDuckWeb.ErrorJSON],
+    formats: [html: RubberduckWeb.ErrorHTML, json: RubberduckWeb.ErrorJSON],
     layout: false
   ],
-  pubsub_server: RubberDuck.PubSub,
+  pubsub_server: Rubberduck.PubSub,
   live_view: [signing_salt: "Zktr14FB"]
 
-config :rubberduck, RubberDuck.CommandedApplication,
+config :rubberduck, Rubberduck.CommandedApplication,
   event_store: [
     adapter: Commanded.EventStore.Adapters.EventStore,
-    event_store: RubberDuck.EventStore
+    event_store: Rubberduck.EventStore
   ],
   pubsub: :local,
   registry: :local,
   consistency: :eventual
 
-config :commanded_ecto_projections, repo: RubberDuck.Repo
+config :commanded_ecto_projections, repo: Rubberduck.Repo
 
 # Configures the mailer
 #
@@ -40,7 +40,7 @@ config :commanded_ecto_projections, repo: RubberDuck.Repo
 #
 # For production it's recommended to configure a different adapter
 # at the `config/runtime.exs`.
-config :rubberduck, RubberDuck.Mailer, adapter: Swoosh.Adapters.Local
+config :rubberduck, Rubberduck.Mailer, adapter: Swoosh.Adapters.Local
 
 # Configure esbuild (the version is required)
 config :esbuild,

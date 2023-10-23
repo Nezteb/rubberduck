@@ -1,7 +1,7 @@
-defmodule RubberDuck.CommandedApplication do
+defmodule Rubberduck.CommandedApplication do
   use Commanded.Application, otp_app: :rubberduck
 
-  router(RubberDuck.Router)
+  router(Rubberduck.Router)
 
   def init(config) do
     {:ok, config}
