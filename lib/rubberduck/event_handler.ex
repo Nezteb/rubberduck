@@ -4,7 +4,8 @@ defmodule Rubberduck.EventHandler do
   use Commanded.Event.Handler,
     application: Rubberduck.CommandedApplication,
     name: __MODULE__,
-    consistency: Application.get_env(:rubberduck, Rubberduck.CommandedApplication)[:consistency] || :eventual
+    consistency:
+      Application.get_env(:rubberduck, Rubberduck.CommandedApplication)[:consistency] || :eventual
 
   alias Rubberduck.Game.Events.StateIncremented
 

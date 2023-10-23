@@ -16,6 +16,8 @@ config :rubberduck, Rubberduck.EventStore,
   username: "postgres",
   password: "postgres",
   database: "eventstore_dev",
+  stacktrace: true,
+  show_sensitive_data_on_connection_error: true,
   pool_size: 10
 
 # For development, we disable any cache and enable

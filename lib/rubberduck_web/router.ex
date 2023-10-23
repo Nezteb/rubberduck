@@ -1,8 +1,6 @@
 defmodule RubberduckWeb.Router do
   use RubberduckWeb, :router
 
-  alias RubberduckWeb.ServerStateLive.Index, as: ServerStateLive
-
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
@@ -21,12 +19,12 @@ defmodule RubberduckWeb.Router do
 
     get "/", PageController, :home
 
-    live "/server_states", ServerStateLive, :index
-    live "/server_states/new", ServerStateLive, :new
-    live "/server_states/:id/edit", ServerStateLive, :edit
+    live "/server_states", ServerStateLive.Index, :index
+    live "/server_states/new", ServerStateLive.Index, :new
+    live "/server_states/:id/edit", ServerStateLive.Index, :edit
 
-    live "/server_states/:id", ServerStateLive, :show
-    live "/server_states/:id/show/edit", ServerStateLive, :edit
+    live "/server_states/:id", ServerStateLive.Show, :show
+    live "/server_states/:id/show/edit", ServerStateLive.Show, :edit
   end
 
   # Other scopes may use custom stacks.

@@ -13,14 +13,6 @@ config :rubberduck, Rubberduck.Repo,
   pool: Ecto.Adapters.SQL.Sandbox,
   pool_size: 10
 
-# config :rubberduck, Rubberduck.EventStore,
-#   serializer: Commanded.Serialization.JsonSerializer,
-#   hostname: "localhost",
-#   username: "postgres",
-#   password: "postgres",
-#   database: "eventstore_test#{System.get_env("MIX_TEST_PARTITION")}",
-#   pool_size: 10
-
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
 config :rubberduck, RubberduckWeb.Endpoint,
@@ -36,10 +28,6 @@ config :rubberduck, Rubberduck.CommandedApplication,
   # TODO: Why strong?
   consistency: :strong
 
-config :rubberduck, Rubberduck.EventStore,
-  database: "eventstore_test#{System.get_env("MIX_TEST_PARTITION")}"
-
-  
 # In test we don't send emails.
 config :rubberduck, Rubberduck.Mailer, adapter: Swoosh.Adapters.Test
 

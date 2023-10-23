@@ -19,7 +19,7 @@ defmodule Rubberduck.Application do
       # Start to serve requests, typically the last entry
       RubberduckWeb.Endpoint,
       Rubberduck.CommandedApplication,
-      Rubberduck.EventHandler,
+      Rubberduck.EventHandler
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
