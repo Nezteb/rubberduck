@@ -37,6 +37,8 @@ defmodule Rubberduck.DataCase do
   Sets up the sandbox based on the test tags.
   """
   def setup_sandbox(tags) do
+    {:ok, _} = Application.ensure_all_started(:rubberduck)
+
     pid = Ecto.Adapters.SQL.Sandbox.start_owner!(Rubberduck.Repo, shared: not tags[:async])
 
     on_exit(fn ->
@@ -44,7 +46,6 @@ defmodule Rubberduck.DataCase do
 
       # https://github.com/commanded/commanded/wiki/Testing-your-application
       :ok = Application.stop(:rubberduck)
-
       Rubberduck.Storage.reset!()
     end)
   end

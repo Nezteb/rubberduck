@@ -7,9 +7,10 @@ TODO:
 - [ ] k8s/k3s yaml (use kind for ci?)
   - [ ] https://github.com/massdriver-cloud/application-templates/tree/main/phoenix-kubernetes
 - [ ] Jaeger/Prometheus? (telemetry/tracing/metrics)
-- [ ] Read chatgpt conversation (and boltai)
+- [ ] Read chatgpt conversation (and BoltAI)
 - [ ] devcontainer (from ice backend)
 - [ ] different container for MIX_ENV=dev, MIX_ENV=test, MIX_ENV=prod
+- [ ] have `mix test` automatically start docker compose stack?
 - [ ] horde/swarm/libcluster/pogo?
 - [ ] MQTT / NATS ? (prob not, need to support web clients)
 

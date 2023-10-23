@@ -31,6 +31,8 @@ config :rubberduck, Rubberduck.CommandedApplication,
   registry: :local,
   consistency: :eventual
 
+config :rubberduck, event_stores: [Rubberduck.EventStore]
+
 config :commanded_ecto_projections, repo: Rubberduck.Repo
 
 # Configures the mailer

@@ -20,7 +20,6 @@ defmodule Rubberduck.Application do
       RubberduckWeb.Endpoint,
       Rubberduck.CommandedApplication,
       Rubberduck.EventHandler,
-      {Rubberduck.GameState, 0}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

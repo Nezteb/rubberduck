@@ -16,7 +16,7 @@ defmodule Rubberduck.Storage do
   end
 
   defp reset_readstore do
-    config = Application.get_env(:my_app, MyApp.Repo)
+    config = Application.get_env(:rubberduck, Rubberduck.Repo)
 
     {:ok, conn} = Postgrex.start_link(config)
 
@@ -27,9 +27,8 @@ defmodule Rubberduck.Storage do
   defp truncate_readstore_tables do
     """
     TRUNCATE TABLE
-      table1,
-      table2,
-      table3
+      server_states,
+      projection_versions
     RESTART IDENTITY
     CASCADE;
     """

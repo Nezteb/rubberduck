@@ -1,7 +1,7 @@
 defmodule RubberduckWeb.GameChannel do
   use RubberduckWeb, :channel
 
-  alias Rubberduck.GameState
+  # alias Rubberduck.Game.ServerState
 
   @impl true
   def join("game:lobby", payload, socket) do
@@ -27,12 +27,12 @@ defmodule RubberduckWeb.GameChannel do
     {:noreply, socket}
   end
 
-  def handle_in("action", %{"action" => action}, socket) do
+  def handle_in("action", %{"action" => _action}, socket) do
     # Apply the action on the server
-    GameState.apply_action(action)
+    # ServerState.apply_action(action)
 
     # Broadcast the new state to all clients
-    broadcast!(socket, "new_state", %{"state" => GameState.get_state()})
+    # broadcast!(socket, "new_state", %{"state" => ServerState.get_state()})
 
     {:noreply, socket}
   end

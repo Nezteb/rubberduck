@@ -13,7 +13,7 @@ services:
       DB_HOST: db
       MIX_ENV: dev
   db:
-    image: postgres:13-alpine
+    image: postgres:16-alpine
     restart: always
     environment:
       POSTGRES_PASSWORD: postgres

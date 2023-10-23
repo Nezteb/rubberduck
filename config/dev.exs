@@ -2,12 +2,20 @@ import Config
 
 # Configure your database
 config :rubberduck, Rubberduck.Repo,
+  hostname: "localhost",
   username: "postgres",
   password: "postgres",
-  hostname: "db",
   database: "rubberduck_dev",
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
+  pool_size: 10
+
+config :rubberduck, Rubberduck.EventStore,
+  serializer: Commanded.Serialization.JsonSerializer,
+  hostname: "localhost",
+  username: "postgres",
+  password: "postgres",
+  database: "eventstore_dev",
   pool_size: 10
 
 # For development, we disable any cache and enable
