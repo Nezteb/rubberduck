@@ -21,7 +21,7 @@ defmodule Rubberduck.Application do
         # {Rubberduck.Worker, arg},
         RubberduckWeb.Telemetry,
         # Start to serve requests, typically the last entry
-        RubberduckWeb.Endpoint,
+        RubberduckWeb.Endpoint
       ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

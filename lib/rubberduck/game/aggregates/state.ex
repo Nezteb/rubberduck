@@ -30,10 +30,12 @@ defmodule Rubberduck.Game.Aggregates.State do
       # This is just a test of multi-event commands
       %MessageSent{id: id, message: "Hello world"}
     end)
-
   end
 
-  def execute(%__MODULE__{amount: before_amount}, %IncrementState{id: id, amount: increment_amount}) do
+  def execute(%__MODULE__{amount: before_amount}, %IncrementState{
+        id: id,
+        amount: increment_amount
+      }) do
     %StateIncremented{id: id, amount: before_amount + increment_amount}
   end
 
@@ -45,7 +47,10 @@ defmodule Rubberduck.Game.Aggregates.State do
     %__MODULE__{id: id, amount: increment_amount}
   end
 
-  def apply(%__MODULE__{amount: before_amount}, %StateIncremented{id: id, amount: increment_amount}) do
+  def apply(%__MODULE__{amount: before_amount}, %StateIncremented{
+        id: id,
+        amount: increment_amount
+      }) do
     %__MODULE__{id: id, amount: before_amount + increment_amount}
   end
 
@@ -54,5 +59,4 @@ defmodule Rubberduck.Game.Aggregates.State do
   end
 
   # Private helpers
-
 end

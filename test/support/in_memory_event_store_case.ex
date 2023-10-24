@@ -8,10 +8,9 @@ defmodule Rubberduck.InMemoryEventStoreCase do
   end
 
   setup _tags do
-    {:ok, _apps} = Application.ensure_all_started(:rubberduck)
-
     on_exit(fn ->
       :ok = Application.stop(:rubberduck)
+      {:ok, _apps} = Application.ensure_all_started(:rubberduck)
     end)
   end
 end
