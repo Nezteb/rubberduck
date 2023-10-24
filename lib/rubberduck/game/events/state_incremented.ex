@@ -1,8 +1,8 @@
 defmodule Rubberduck.Game.Events.StateIncremented do
   @derive Jason.Encoder
   defstruct [
+    :id,
     :amount,
-    :correlation_id,
     :sent_at
   ]
 end

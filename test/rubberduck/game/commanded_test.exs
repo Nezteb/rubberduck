@@ -1,11 +1,12 @@
 defmodule Rubberduck.Game.CommandedTest do
-  use Rubberduck.DataCase
   use Rubberduck.InMemoryEventStoreCase
+  use Rubberduck.DataCase
 
   alias Rubberduck.CommandedApplication, as: App
   # alias Rubberduck.Game.Aggregates.State, as: Aggregate
   alias Rubberduck.Game.Commands.IncrementState, as: Command
   alias Rubberduck.Game.Events.StateIncremented, as: Event
+  alias Rubberduck.Game.Events.MessageSent
 
   defp do_setup(context) do
     context
@@ -71,9 +72,9 @@ defmodule Rubberduck.Game.CommandedTest do
       assert_correlated(
         App,
         Event,
-        fn e -> e.id === id end,
-        InitialAmountDeposited,
-        fn deposited -> deposited.account_number == "ACC123" end
+        fn event -> event.id === id end,
+        MessageSent,
+        fn event -> event.message === "Hello world" end
       )
     end
   end
