@@ -1,5 +1,5 @@
 defmodule RubberduckWeb.ErrorHTMLTest do
-  use RubberduckWeb.ConnCase, async: true
+  use RubberduckWeb.ConnCase
 
   # Bring render_to_string/4 for testing custom views
   import Phoenix.Template

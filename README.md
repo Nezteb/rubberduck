@@ -3,6 +3,7 @@
 TODO:
 
 - [X] Dockerfile + docker-compose file
+- [X] get tests working with commanded
 - [ ] justfile?
 - [ ] earthly for ci?
 - [ ] k8s/k3s yaml (use kind for ci?)

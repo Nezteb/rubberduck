@@ -9,6 +9,7 @@ defmodule Rubberduck.InMemoryEventStoreCase do
 
   setup tags do
     Rubberduck.InMemoryEventStoreCase.setup_in_memory_event_store(tags)
+    Rubberduck.DataCase.setup_sandbox(tags)
     :ok
   end
 

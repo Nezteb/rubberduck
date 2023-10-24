@@ -1,9 +1,8 @@
 defmodule Rubberduck.Game.CommandedTest do
   use Rubberduck.InMemoryEventStoreCase
-  use Rubberduck.DataCase
 
   alias Rubberduck.CommandedApplication, as: App
-  # alias Rubberduck.Game.Aggregates.State, as: Aggregate
+  alias Rubberduck.Game.Aggregates.State, as: Aggregate
   alias Rubberduck.Game.Commands.IncrementState, as: Command
   alias Rubberduck.Game.Events.StateIncremented, as: Event
   alias Rubberduck.Game.Events.MessageSent
@@ -76,6 +75,23 @@ defmodule Rubberduck.Game.CommandedTest do
         MessageSent,
         fn event -> event.message === "Hello world" end
       )
+    end
+
+    test "pause until specific event is published" do
+      id = EventStore.UUID.uuid4()
+      :ok = App.dispatch(%Command{id: id, amount: 10})
+      wait_for_event(App, Event, fn e -> e.id === id end)
+    end
+
+    test "make sure aggregate state are what we wanted" do
+      id = EventStore.UUID.uuid4()
+      :ok = App.dispatch(%Command{id: id, amount: 10})    
+      wait_for_event(App, Event, fn e -> e.id === id end)
+    
+      assert Commanded.Aggregates.Aggregate.aggregate_state(App, Aggregate, id) === %Aggregate{
+        id: id,
+        amount: 10,
+      }
     end
   end
 end
