@@ -32,6 +32,7 @@ defmodule RubberduckWeb.ConnCase do
   end
 
   setup tags do
+    Rubberduck.InMemoryEventStoreCase.setup_in_memory_event_store(tags)
     Rubberduck.DataCase.setup_sandbox(tags)
     {:ok, conn: Phoenix.ConnTest.build_conn()}
   end

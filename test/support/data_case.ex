@@ -28,6 +28,7 @@ defmodule Rubberduck.DataCase do
   end
 
   setup tags do
+    Rubberduck.InMemoryEventStoreCase.setup_in_memory_event_store(tags)
     Rubberduck.DataCase.setup_sandbox(tags)
     :ok
   end
