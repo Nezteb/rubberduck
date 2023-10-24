@@ -11,7 +11,7 @@ defmodule Rubberduck.EventHandler do
 
   # Event handlers modify non-Commanded app state (like Ecto) after events are dispatched
 
-  def init do
+  def init() do
     with {:ok, _pid} <- Agent.start_link(fn -> 0 end, name: __MODULE__) do
       :ok
     end

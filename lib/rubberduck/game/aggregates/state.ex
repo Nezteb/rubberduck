@@ -32,11 +32,19 @@ defmodule Rubberduck.Game.Aggregates.State do
     end)
   end
 
-  def execute(%__MODULE__{amount: before_amount}, %IncrementState{
+  def execute(%__MODULE__{amount: before_amount} = state, %IncrementState{
         id: id,
         amount: increment_amount
       }) do
-    %StateIncremented{id: id, amount: before_amount + increment_amount}
+    state
+    |> Multi.new()
+    |> Multi.execute(fn %__MODULE__{} ->
+      %StateIncremented{id: id, amount: before_amount + increment_amount}
+    end)
+    |> Multi.execute(fn %__MODULE__{} ->
+      # This is just a test of multi-event commands
+      %MessageSent{id: id, message: "Hello world"}
+    end)
   end
 
   # State mutators

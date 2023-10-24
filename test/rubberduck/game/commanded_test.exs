@@ -1,54 +1,26 @@
 defmodule Rubberduck.Game.CommandedTest do
-  use Rubberduck.InMemoryEventStoreCase
+  use Rubberduck.DataCase 
 
-  alias Rubberduck.CommandedApplication, as: App
-  alias Rubberduck.Game.Aggregates.State, as: Aggregate
-  alias Rubberduck.Game.Commands.IncrementState, as: Command
-  alias Rubberduck.Game.Events.StateIncremented, as: Event
+  alias Commanded.Aggregate.Multi
+  alias Rubberduck.CommandedApplication
+  alias Rubberduck.EventHandler
+  alias Rubberduck.Game.Aggregates.State
+  alias Rubberduck.Game.Commands.IncrementState
+  alias Rubberduck.Game.Events.StateIncremented
   alias Rubberduck.Game.Events.MessageSent
 
   defp do_setup(context) do
     context
   end
 
-  describe "Show" do
+  describe "commanded event store" do
     setup [:do_setup]
 
-    test "ensure any event of this type is published" do
-      id = EventStore.UUID.uuid4()
-      :ok = App.dispatch(%Command{id: id, amount: 4})
-
-      assert_receive_event(
-        App,
-        Event,
-        # predicate_fn
-        fn event ->
-          assert event.id === id
-        end
-      )
-    end
-
-    test "ensure an event is published matching the given predicate" do
-      id = EventStore.UUID.uuid4()
-      :ok = App.dispatch(%Command{id: id, amount: 4})
-
-      assert_receive_event(
-        App,
-        Event,
-        # predicate_fn
-        fn event -> event.amount == 4 end,
-        # assertion_fn
-        fn event ->
-          assert event.id === id
-        end
-      )
-    end
-
-    test "thing" do
+    test "basic event check" do
       stream_uuid = EventStore.UUID.uuid4()
       expected_version = 0
 
-      events = [%Event{amount: 10}]
+      events = [%StateIncremented{amount: 10}]
 
       event_data =
         Enum.map(events, fn event ->
@@ -61,37 +33,27 @@ defmodule Rubberduck.Game.CommandedTest do
           }
         end)
 
-      :ok = Commanded.EventStore.append_to_stream(App, stream_uuid, expected_version, event_data)
+      :ok = Commanded.EventStore.append_to_stream(CommandedApplication, stream_uuid, expected_version, event_data)
     end
 
-    test "make sure two events are correlated" do
+    test "business logic without event store" do
       id = EventStore.UUID.uuid4()
-      :ok = App.dispatch(%Command{id: id, amount: 10})
 
-      assert_correlated(
-        App,
-        Event,
-        fn event -> event.id === id end,
-        MessageSent,
-        fn event -> event.message === "Hello world" end
-      )
-    end
+      starter_state = %State{id: id, amount: 10}
+      command = %IncrementState{id: id, amount: 20}
+      expected_events = [%StateIncremented{id: id, amount: 30}, %MessageSent{id: id, message: "Hello world"}]
 
-    test "pause until specific event is published" do
-      id = EventStore.UUID.uuid4()
-      :ok = App.dispatch(%Command{id: id, amount: 10})
-      wait_for_event(App, Event, fn e -> e.id === id end)
-    end
+      # Test the aggregate execution
+      {aggregate, actual_events} = State.execute(starter_state, command) |> Multi.run()
+      assert %State{amount: 40, id: ^id} = aggregate
+      assert actual_events === expected_events
 
-    test "make sure aggregate state are what we wanted" do
-      id = EventStore.UUID.uuid4()
-      :ok = App.dispatch(%Command{id: id, amount: 10})    
-      wait_for_event(App, Event, fn e -> e.id === id end)
-    
-      assert Commanded.Aggregates.Aggregate.aggregate_state(App, Aggregate, id) === %Aggregate{
-        id: id,
-        amount: 10,
-      }
+      # Test the event handler
+      start_balance = EventHandler.current_balance()
+      Enum.map(actual_events, fn event ->
+        EventHandler.handle(event, %{})
+      end)
+      assert EventHandler.current_balance() - start_balance === 30
     end
   end
 end
